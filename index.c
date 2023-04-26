@@ -1,7 +1,28 @@
 #include<stdio.h>
+#include<string.h>
 
-void addPassword() {
-    printf("Add new password");
+int count = 100;
+int charLimit = 100;
+int counter = 0;
+
+void addPassword(char applications[][charLimit], char passwords[][charLimit]) {
+    char newPassword[charLimit];
+    char newApplication[charLimit];
+
+    // temp store new app
+    printf("\nEnter application name: ");
+    scanf("%s", newApplication);
+    
+    // temp store new password
+    printf("Enter password for %s: ", newApplication);
+    scanf("%s", newPassword);
+
+    // update in global apps and passwords lists
+    strcpy(applications[counter], newApplication);
+    strcpy(passwords[counter], newPassword);
+    
+    // update pointer of apps and passwords lists
+    counter++;
 }
 
 void getPassword() {
@@ -17,6 +38,8 @@ void deletePassword() {
 }
 
 void main() {
+    char applications[count][charLimit];
+    char passwords[count][charLimit];
 
     // display all operations
     printf("1) Add new password\n");
@@ -31,7 +54,7 @@ void main() {
 
     switch(selectedOperation) {
         case 1:
-            addPassword();
+            addPassword(applications, passwords);
             break;
         case 2:
             getPassword();

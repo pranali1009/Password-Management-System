@@ -54,8 +54,26 @@ void getPassword(char applications[][charLimit], char passwords[][charLimit]) {
     printf("Password of app %s is %s\n", applications[appId - 1], passwords[appId - 1]);
 }
 
-void updatePassword() {
-    printf("Update password");
+void updatePassword(char applications[][charLimit], char passwords[][charLimit]) {
+    if (counter == 0) {
+        // since no app was saved, we cant get any password
+        
+        printf("No app has been saved\n");
+        return;
+    }
+
+    printAllApps(applications);
+
+    // temp store app id
+    int appId;
+    printf("\nEnter id of app: ");
+    scanf("%d", &appId);
+
+    char updatedPassword[charLimit];
+    printf("Enter new password for %s: ", applications[appId - 1]);
+    scanf("%s", updatedPassword);
+
+    strcpy(passwords[appId - 1], updatedPassword);
 }
 
 void deletePassword() {
@@ -87,7 +105,7 @@ void main() {
                 getPassword(applications, passwords);
                 break;
             case 3:
-                updatePassword();
+                updatePassword(applications, passwords);
                 break;
             case 4:
                 deletePassword();
